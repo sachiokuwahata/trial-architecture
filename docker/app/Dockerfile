@@ -11,7 +11,8 @@ RUN apt-get install -y zlib1g-dev \
     libjpeg62-turbo-dev \
     libmagickwand-dev --no-install-recommends \
     zip \
-    unzip
+    unzip \
+    && docker-php-ext-install pdo_mysql
 
 # composerのインストール
 RUN curl -sS https://getcomposer.org/installer | php \
