@@ -16,6 +16,7 @@ services:
       - ./app/server:/var/www/src
     depends_on:
       - app
+      - nextjs
     networks:
       - app_network
 
@@ -46,6 +47,19 @@ services:
       - 3306:3306
     volumes:
       - db-store:/var/lib/mysql
+    networks:
+      - app_network
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: ./docker/nextjs/Dockerfile
+    container_name: t-nextjs
+    volumes:
+      - ./app/front:/app/front
+    ports:
+      - 3000:3000
+    tty: true # コンテナの正常終了を防ぐ
     networks:
       - app_network
 
