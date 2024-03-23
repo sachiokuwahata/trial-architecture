@@ -10,7 +10,7 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     container_name: t-nginx
     ports:
-      - 80:80
+      - 8080:80
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./app/server:/var/www/src
@@ -58,7 +58,7 @@ services:
     volumes:
       - ./app/front:/app/front
     ports:
-      - 3000:3000
+      - 80:3000
     tty: true # コンテナの正常終了を防ぐ
     networks:
       - app_network

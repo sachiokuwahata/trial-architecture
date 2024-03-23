@@ -1,7 +1,21 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useEffect } from "react";
+import { server } from '@/next.config.mjs';
 
 export default function Home() {
+  useEffect(() => {
+    console.log("Hello, world!");
+    async function fetchHealthCheck() {
+      const response = await fetch(`${server}/health`);
+      const data = await response.json();
+      console.log(data);
+    }
+
+    fetchHealthCheck();
+  }, []);
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
